@@ -1,5 +1,4 @@
-ng-openapi-gen: An OpenAPI 3 code generator for Angular
----
+## react-openapi-hooks-gen: An OpenAPI 3 code generator for React using hooks, redux, and typescript
 
 ![Build status](https://github.com/cyclosproject/ng-openapi-gen/workflows/build/badge.svg)
 ![Test status](https://github.com/cyclosproject/ng-openapi-gen/workflows/test/badge.svg)
@@ -48,7 +47,7 @@ The main differences between `ng-openapi-gen` and `ng-swagger-gen` are:
 - There is an extensive test suite for the generator;
 - The command-line arguments are more robust, derived directly from the `JSON schema` definition for the configuration file, easily allowing to override any specific configuration on CLI.
 - Root enumerations (schemas of `type` = `string` | `number` | `integer`) can be generated as TypeScript's `enum`'s.
-This is enabled by default. Inline enums are not, because it would require another type to be exported in the container type.
+  This is enabled by default. Inline enums are not, because it would require another type to be exported in the container type.
 
 ## Installing and running
 
@@ -122,16 +121,19 @@ export class ApiInterceptor implements HttpInterceptor {
     // Apply the headers
     req = req.clone({
       setHeaders: {
-        'ApiToken': '1234567890'
-      }
+        ApiToken: '1234567890',
+      },
     });
 
     // Also handle errors globally
     return next.handle(req).pipe(
-      tap(x => x, err => {
-        // Handle this err
-        console.error(`Error performing request, status code = ${err.status}`);
-      })
+      tap(
+        (x) => x,
+        (err) => {
+          // Handle this err
+          console.error(`Error performing request, status code = ${err.status}`);
+        },
+      ),
     );
   }
 }
@@ -150,14 +152,11 @@ import { ApiInterceptor } from './api.interceptor';
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   useExisting: forwardRef(() => ApiInterceptor),
-  multi: true
+  multi: true,
 };
 
 @NgModule({
-  providers: [
-    ApiInterceptor,
-    API_INTERCEPTOR_PROVIDER
-  ]
+  providers: [ApiInterceptor, API_INTERCEPTOR_PROVIDER],
 })
 export class AppModule {}
 ```
@@ -212,7 +211,7 @@ export class ApiRequestConfiguration {
     }
     // Apply the headers to the request
     return req.clone({
-      setHeaders: headers
+      setHeaders: headers,
     });
   }
 }
@@ -232,6 +231,7 @@ consistent with the swagger descriptor.
 
 To do so, create the `ng-openapi-gen.json` configuration file and add the
 following `scripts` to your `package.json`:
+
 ```json
 {
   "scripts": {
@@ -241,11 +241,13 @@ following `scripts` to your `package.json`:
   }
 }
 ```
+
 This way whenever you run `npm start` or `npm run build`, the API classes
 will be generated before actually serving / building your application.
 
 Also, if you use several configuration files, you can specify multiple times
 the call to `ng-openapi-gen`, like:
+
 ```json
 {
   "scripts": {
@@ -273,7 +275,7 @@ paths:
         - Users
       operationId: listUsers
       x-operation-name: list
-      # ... 
+      # ...
   /places:
     get:
       tags:
