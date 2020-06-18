@@ -52,10 +52,7 @@
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
-  "peerDependencies": {
-    "@angular/core": ">=7.0.0",
-    "rxjs": ">=6.0.0"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@types/jasmine": "^3.5.10",
     "jasmine": "^3.5.0",

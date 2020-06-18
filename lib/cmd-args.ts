@@ -14,7 +14,7 @@ function createParser() {
     addHelp: true,
     description: `
 Generator for API clients described with OpenAPI 3.0 specification for
-Angular 6+ projects. Requires a configuration file, which defaults to
+React and Redux projects. Requires a configuration file, which defaults to
 ${DefaultConfig} in the current directory. The file can also be
 specified using '--config <file>' or '-c <file>'.
 All settings in the configuration file can be overridding by setting the
