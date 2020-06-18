@@ -37,15 +37,15 @@ You may want to install `react-openapi-hooks-gen` globally or just on your proje
 
 ```bash
 $ npm install -g react-openapi-hooks-gen
-$ react-openapi-hooks-gen --input my-api.yaml --output my-app/src/app/api
+$ react-openapi-hooks-gen --input my-api.yaml --output my-app/src/api
 ```
 
-This will expect the file `my-api.yaml` to be in the current directory, and will generate the files on `my-app/src/app/api`.
+This will expect the file `my-api.yaml` to be in the current directory, and will generate the files on `my-app/src/api`.
 
 ## Configuration file and CLI arguments
 
 If the file `react-openapi-hooks-gen.json` exists in the current directory, it will be read. Alternatively, you can run `react-openapi-hooks-gen --config my-config.json` (could also be `-c`) to specify a different configuration file, or even specify the input / output as `react-openapi-hooks-gen -i input.yaml` or `react-openapi-hooks-gen -i input.yaml -o /tmp/generation`.
-The only required configuration property is `input`, which specified the `OpenAPI` specification file. The default `output` is `src/app/api`.
+The only required configuration property is `input`, which specified the `OpenAPI` specification file. The default `output` is `src/api`.
 
 For a list with all possible configuration options, see the [JSON schema file](https://raw.githubusercontent.com/tdbrian/react-openapi-hooks-gen/master/react-openapi-hooks-gen-schema.json).
 You can also run `react-openapi-hooks-gen --help` to see all available options.

@@ -26,7 +26,7 @@ export class ReactOpenApiGen {
   tempDir: string;
 
   constructor(public openApi: OpenAPIObject, public options: Options) {
-    this.outDir = this.options.output || 'src/app/api';
+    this.outDir = this.options.output || 'src/api';
     // Make sure the output path doesn't end with a slash
     if (this.outDir.endsWith('/') || this.outDir.endsWith('\\')) {
       this.outDir = this.outDir.substr(0, this.outDir.length - 1);

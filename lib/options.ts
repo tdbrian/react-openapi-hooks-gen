@@ -3,7 +3,7 @@ export interface Options {
   /** The input file or URL to the OpenAPI 3 specification, JSON or YAML, local file or URL */
   input: string;
 
-  /** Where generated files will be written to. Defaults to 'src/app/api'. */
+  /** Where generated files will be written to. Defaults to 'src/api'. */
   output?: string;
 
   /** Tag name assumed for operations without tags. Defaults to the value of 'prefix', which defaults to 'Api'. */

@@ -13,9 +13,9 @@
       "type": "string"
     },
     "output": {
-      "description": "Where generated files will be written to. Defaults to 'src/app/api'.",
+      "description": "Where generated files will be written to. Defaults to 'src/api'.",
       "type": "string",
-      "default": "src/app/api"
+      "default": "src/api"
     },
     "fetchTimeout": {
       "description": "Indicates the timeout when fetching the input URL, in milliseconds. Defaults to 20 seconds (20000).",
