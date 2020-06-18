@@ -1,0 +1,70 @@
+{
+  "name": "react-openapi-hooks-gen",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "tdbrian",
+  "description": "An OpenAPI 3 codegen for React Hooks using Typescript",
+  "keywords": [
+    "react",
+    "redux",
+    "hooks",
+    "typescript",
+    "openapi",
+    "codegen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyclosproject/ng-openapi-gen.git"
+  },
+  "private": true,
+  "bin": {
+    "react-openapi-hooks-gen": "lib/index.js"
+  },
+  "scripts": {
+    "test": "jasmine-ts tsconfig.json --config=jasmine.json",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "compile": "tsc --project tsconfig.json && ncp \"LICENSE\" dist && ncp \"README.md\" \"dist/README.md\" && ncp \"templates\" \"dist/templates\" && ncp \"node_modules\" \"dist/node_modules\" && rimraf \"dist/test\" && replace-in-file \"\\\"private\\\": true\" \"\\\"private\\\": false\" dist/package.json",
+    "build": "npm run tslint && npm run compile && npm test",
+    "test:watch": "nodemon --watch './**/*' --exec 'npm run test'"
+  },
+  "dependencies": {
+    "@loopback/openapi-v3-types": "^1.2.1",
+    "@types/argparse": "^1.0.38",
+    "@types/fs-extra": "^8.1.0",
+    "@types/jsesc": "^0.4.29",
+    "@types/json-schema": "^7.0.4",
+    "@types/lodash": "^4.14.150",
+    "@types/mkdirp": "^0.5.2",
+    "@types/node": "^12.12.37",
+    "@types/rimraf": "^2.0.4",
+    "argparse": "^1.0.10",
+    "eol": "^0.9.1",
+    "esm": "^3.2.25",
+    "fs-extra": "^8.1.0",
+    "handlebars": "^4.7.6",
+    "jsesc": "^2.5.2",
+    "json-schema": "^0.2.5",
+    "json-schema-ref-parser": "^7.1.4",
+    "lodash": "^4.17.15",
+    "mkdirp": "^0.5.5",
+    "rimraf": "^2.7.1",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=7.0.0",
+    "rxjs": ">=6.0.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.5.10",
+    "jasmine": "^3.5.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "jasmine-ts": "^0.3.0",
+    "mem": "^5.1.1",
+    "ncp": "^2.0.0",
+    "nodemon": "^2.0.3",
+    "replace-in-file": "^4.3.1",
+    "tslint": "^5.20.1",
+    "typescript-parser": "^2.6.1"
+  }
+}

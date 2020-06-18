@@ -1,0 +1,19 @@
+/* tslint:disable */
+import { Injectable } from '@angular/core';
+
+/**
+ * Global configuration
+ */
+@Injectable({
+  providedIn: 'root',
+})
+export class {{configurationClass}} {
+  rootUrl: string = '{{{rootUrl}}}';
+}
+
+/**
+ * Parameters for `{{moduleClass}}.forRoot()`
+ */
+export interface {{configurationParams}} {
+  rootUrl?: string;
+}
