@@ -9,7 +9,6 @@ import { Property } from './property';
  * Context to generate a model
  */
 export class Model extends GenType {
-
   // General type
   isSimple: boolean;
   isEnum: boolean;
@@ -38,7 +37,7 @@ export class Model extends GenType {
 
     // When enumStyle is 'alias' it is handled as a simple type.
     if (options.enumStyle !== 'alias' && (schema.enum || []).length > 0 && ['string', 'number', 'integer'].includes(type)) {
-      const names = schema['x-enumNames'] as string[] || [];
+      const names = (schema['x-enumNames'] as string[]) || [];
       const values = schema.enum || [];
       this.enumValues = [];
       for (let i = 0; i < values.length; i++) {
@@ -59,7 +58,7 @@ export class Model extends GenType {
       this.hasSuperClasses = this.superClasses.length > 0;
       const sortedNames = [...propertiesByName.keys()];
       sortedNames.sort();
-      this.properties = sortedNames.map(propName => propertiesByName.get(propName) as Property);
+      this.properties = sortedNames.map((propName) => propertiesByName.get(propName) as Property);
     } else {
       // Simple / array / enum / union
       this.simpleType = tsType(schema, options);
@@ -103,7 +102,7 @@ export class Model extends GenType {
       const required = schema.required || [];
       const propNames = Object.keys(properties);
       // When there are additional properties, we need an union of all types for it.
-      // See https://github.com/cyclosproject/ng-openapi-gen/issues/68
+      // See https://github.com/cyclosproject/react-openapi-hooks-gen/issues/68
       const propTypes = new Set<string>();
       const appendType = (type: string) => {
         if (type.startsWith('null | ')) {

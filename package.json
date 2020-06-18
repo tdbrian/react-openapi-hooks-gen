@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyclosproject/ng-openapi-gen.git"
+    "url": "git+https://github.com/cyclosproject/react-openapi-hooks-gen.git"
   },
   "private": true,
   "bin": {

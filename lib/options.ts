@@ -1,7 +1,5 @@
-
-/** Options used by ng-openapi-gen */
+/** Options used by react-openapi-hooks-gen */
 export interface Options {
-
   /** The input file or URL to the OpenAPI 3 specification, JSON or YAML, local file or URL */
   input: string;
 

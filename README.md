@@ -1,13 +1,11 @@
 ## react-openapi-hooks-gen: An OpenAPI 3 code generator for React using hooks, redux, and typescript
 
-![Build status](https://github.com/cyclosproject/ng-openapi-gen/workflows/build/badge.svg)
-![Test status](https://github.com/cyclosproject/ng-openapi-gen/workflows/test/badge.svg)
+![Build Status](https://github.com/tdbrian/react-openapi-hooks-gen/workflows/build/badge.svg)
+![test](https://github.com/tdbrian/react-openapi-hooks-gen/workflows/test/badge.svg)
 
 This project is a NPM module that generates model interfaces and web service clients from an [OpenApi 3](https://www.openapis.org/) [specification](https://github.com/OAI/OpenAPI-Specification).
-The generated classes follow the principles of [Angular](https://angular.io/).
-The generated code is compatible with Angular 7+.
-
-For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), use [ng-swagger-gen](https://github.com/cyclosproject/ng-swagger-gen) instead.
+The generated classes follow the principles of [React](https://reactjs.org/).
+The generated code is compatible with React v16.13.1.
 
 ## Highlights
 
@@ -26,54 +24,39 @@ For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/b
 
 ## Limitations
 
-- Only standard OpenAPI 3 descriptions will be generated. `ng-swagger-gen` allows several extensions, specially types from JSON schema, but they are out of scope for `ng-openapi-gen`. There is, however, support for a few [vendor extensions](#Supported_vendor_extensions);
+- Only standard OpenAPI 3 descriptions will be generated. `react-openapi-hooks-gen` allows several extensions, specially types from JSON schema, but they are out of scope for `react-openapi-hooks-gen`. There is, however, support for a few [vendor extensions](#Supported_vendor_extensions);
 - Servers per operation are not supported;
 - Only the first server is used as a default root URL in the configuration;
 - No data transformation is ever performed before sending / after returning data.
   This means that a property of type `string` and format `date-time` will always be generated as `string`, not `Date`.
   Otherwise every API call would need to have a processing that would traverse the returned object graph before sending the request
-  to replace all date properties by `Date`. The same applies to sent requests. Such operations are out of scope for `ng-openapi-gen`;
-
-## Relationship with ng-swagger-gen
-
-This project uses the same philosophy as [ng-swagger-gen](https://github.com/cyclosproject/ng-swagger-gen), and was built by the same team.
-We've learned a lot with `ng-swagger-gen` and have applied all the acquired knowledge to build `ng-openapi-gen`.
-
-There were several reasons to not build a new major version of `ng-swagger-gen` that supports `OpenAPI 3`, but instead, to create a new project.
-The main differences between `ng-openapi-gen` and `ng-swagger-gen` are:
-
-- The first, more obvious and more important is the specification version, `OpenAPI 3` vs `Swagger 2`;
-- The generator itself is written in `TypeScript`, which should be easier to maintain;
-- There is an extensive test suite for the generator;
-- The command-line arguments are more robust, derived directly from the `JSON schema` definition for the configuration file, easily allowing to override any specific configuration on CLI.
-- Root enumerations (schemas of `type` = `string` | `number` | `integer`) can be generated as TypeScript's `enum`'s.
-  This is enabled by default. Inline enums are not, because it would require another type to be exported in the container type.
+  to replace all date properties by `Date`. The same applies to sent requests. Such operations are out of scope for `react-openapi-hooks-gen`;
 
 ## Installing and running
 
-You may want to install `ng-openapi-gen` globally or just on your project. Here is an example for a global setup:
+You may want to install `react-openapi-hooks-gen` globally or just on your project. Here is an example for a global setup:
 
 ```bash
-$ npm install -g ng-openapi-gen
-$ ng-openapi-gen --input my-api.yaml --output my-app/src/app/api
+$ npm install -g react-openapi-hooks-gen
+$ react-openapi-hooks-gen --input my-api.yaml --output my-app/src/app/api
 ```
 
 This will expect the file `my-api.yaml` to be in the current directory, and will generate the files on `my-app/src/app/api`.
 
 ## Configuration file and CLI arguments
 
-If the file `ng-openapi-gen.json` exists in the current directory, it will be read. Alternatively, you can run `ng-openapi-gen --config my-config.json` (could also be `-c`) to specify a different configuration file, or even specify the input / output as `ng-openapi-gen -i input.yaml` or `ng-openapi-gen -i input.yaml -o /tmp/generation`.
+If the file `react-openapi-hooks-gen.json` exists in the current directory, it will be read. Alternatively, you can run `react-openapi-hooks-gen --config my-config.json` (could also be `-c`) to specify a different configuration file, or even specify the input / output as `react-openapi-hooks-gen -i input.yaml` or `react-openapi-hooks-gen -i input.yaml -o /tmp/generation`.
 The only required configuration property is `input`, which specified the `OpenAPI` specification file. The default `output` is `src/app/api`.
 
-For a list with all possible configuration options, see the [JSON schema file](https://raw.githubusercontent.com/cyclosproject/ng-openapi-gen/master/ng-openapi-gen-schema.json).
-You can also run `ng-openapi-gen --help` to see all available options.
+For a list with all possible configuration options, see the [JSON schema file](https://raw.githubusercontent.com/tdbrian/react-openapi-hooks-gen/master/react-openapi-hooks-gen-schema.json).
+You can also run `react-openapi-hooks-gen --help` to see all available options.
 Each option in the JSON schema can be passed in as a CLI argument, both in camel case, like `--includeTags tag1,tag2,tag3`, or in kebab case, like `--exclude-tags tag1,tag2,tag3`.
 
 Here is an example of a configuration file:
 
 ```json
 {
-  "$schema": "node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+  "$schema": "node_modules/react-openapi-hooks-gen/react-openapi-hooks-gen-schema.json",
   "input": "my-file.json",
   "output": "out/person-place",
   "ignoreUnusedModels": false
@@ -229,15 +212,15 @@ some other seed (for example, using [webpack](https://webpack.js.org/)
 directly), you can setup a script to make sure the generated API classes are
 consistent with the swagger descriptor.
 
-To do so, create the `ng-openapi-gen.json` configuration file and add the
+To do so, create the `react-openapi-hooks-gen.json` configuration file and add the
 following `scripts` to your `package.json`:
 
 ```json
 {
   "scripts": {
-    "ng-openapi-gen": "ng-openapi-gen",
-    "start": "npm run ng-openapi-gen && npm run ng -- serve",
-    "build": "npm run ng-openapi-gen && npm run ng -- build -prod"
+    "react-openapi-hooks-gen": "react-openapi-hooks-gen",
+    "start": "npm run react-openapi-hooks-gen && npm run ng -- serve",
+    "build": "npm run react-openapi-hooks-gen && npm run ng -- build -prod"
   }
 }
 ```
@@ -246,14 +229,14 @@ This way whenever you run `npm start` or `npm run build`, the API classes
 will be generated before actually serving / building your application.
 
 Also, if you use several configuration files, you can specify multiple times
-the call to `ng-openapi-gen`, like:
+the call to `react-openapi-hooks-gen`, like:
 
 ```json
 {
   "scripts": {
-    "ng-openapi-gen": "ng-openapi-gen",
-    "generate.api1": "npm run ng-openapi-gen -c api1.json",
-    "generate.api2": "npm run ng-openapi-gen -c api2.json",
+    "react-openapi-hooks-gen": "react-openapi-hooks-gen",
+    "generate.api1": "npm run react-openapi-hooks-gen -c api1.json",
+    "generate.api2": "npm run react-openapi-hooks-gen -c api2.json",
     "generate": "npm run generate.api1 && npm run generate.api2",
     "start": "npm run generate && npm run ng -- serve",
     "build": "npm run generate && npm run ng -- build -prod"
@@ -316,4 +299,4 @@ cd dist
 npm link
 ```
 
-At that point, the globally available ng-openapi-gen will be the one compiled to the `dist` folder.
+At that point, the globally available react-openapi-hooks-gen will be the one compiled to the `dist` folder.
