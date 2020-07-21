@@ -46,7 +46,7 @@
     "jsesc": "^2.5.2",
     "json-schema": "^0.2.5",
     "json-schema-ref-parser": "^7.1.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
     "mkdirp": "^0.5.5",
     "npm": "^6.14.5",
