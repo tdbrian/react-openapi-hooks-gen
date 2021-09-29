@@ -42,7 +42,7 @@
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "jsesc": "^2.5.2",
     "json-schema": "^0.2.5",
     "json-schema-ref-parser": "^7.1.4",
